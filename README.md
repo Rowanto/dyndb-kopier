@@ -1,5 +1,9 @@
-# dynamodb-copy-table
-A simple python script to copy dynamodb table
+# dyndb-kopier
+A simple python script to copy dynamodb table.
+Taken from https://github.com/techgaun/dynamodb-copy-table and renamed it to a shorter name.
+
+The aim of this script is only to copy content from one dynamodb table to another on in another region.
+It's to make migration easier for smaller table, althought it can also be used for medium sized ones.
 
 ---
 
@@ -13,16 +17,13 @@ A simple python script to copy dynamodb table
 A simple usage example:
 
 ```shell
-$ python dynamodb-copy-table.py src_table dst_table
+$ python dyndb-kopier.py src_region src_table dst_region dst_table
 ```
 
-You can use the environment variables `AWS_DEFAULT_REGION` and `DISABLE_DATACOPY` to select the region (the default region is `us-west-2`) and disable the copying of data from source table to destination table.
-
-```shell
-$ AWS_DEFAULT_REGION=us-east-1 DISABLE_DATACOPY=yes python dynamodb-copy-table.py src_table dst_table
-```
+This script version doesn't create the destination table for you. It just assumes it already exists.
 
 ### References
 
 - [Import and Export DynamoDB Data using AWS Data Pipeline](http://docs.aws.amazon.com/datapipeline/latest/DeveloperGuide/dp-importexport-ddb.html)
 - [Original script](https://gist.github.com/iomz/9774415) - had to modify and add support for tables with only hash key
+- [Techgaun script](https://github.com/techgaun/dynamodb-copy-table) - modify to add support for copying across region and dropped support for table creation
